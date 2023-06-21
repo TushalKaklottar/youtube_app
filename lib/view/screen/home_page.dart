@@ -3,19 +3,16 @@ import 'package:youtube_api/youtube_api.dart';
 import 'package:youtube_app/Global/youtube_global.dart';
 
 class Home_Page extends StatefulWidget {
-
   @override
   _Home_PageState createState() => _Home_PageState();
 }
 class _Home_PageState extends State<Home_Page> {
-
   bool typing = false;
   static String key = "AIzaSyBRVa7iu7N03OuNEqZKHQGK1au-zbeRwZw";
   String header = "New Song";
 
   YoutubeAPI youtube = YoutubeAPI(key);
   List<YouTubeVideo> videoResult = [];
-
 
   Future<void> callAPI() async {
     videoResult = await youtube.search(
@@ -36,67 +33,66 @@ class _Home_PageState extends State<Home_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Row(
-        children:  const [
-        Icon(
-        Icons.play_circle_filled,
-        color: Colors.red,
-        size: 30,
-    ),
-          SizedBox(width: 5),
-          Text(
-            "YouTube",
-            style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Row(
+              children:  const [
+                Icon(
+                  Icons.play_circle_filled,
+                  color: Colors.red,
+                  size: 30,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "YouTube",
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+              ]
           ),
-    ]
-      ),
-        actions: [
-          const Icon(
-            Icons.cast,
-            color: Colors.black,
-            size: 23,
-          ),
-          const SizedBox(width: 12),
-          const Icon(
-            Icons.notifications_none_outlined,
-            color: Colors.black,
-            size: 27,
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("search_page");
-            },
-            icon: const Icon(
-              Icons.search,
+          actions: [
+            const Icon(
+              Icons.cast,
               color: Colors.black,
+              size: 23,
             ),
-          ),
-          CircleAvatar(
-            radius: 15,
-            backgroundColor: Colors.grey.withOpacity(0.5),
-            backgroundImage: const AssetImage('assets/images/img_1.png'),
-          ),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-              child: ListView(
-                children: videoResult.map<Widget>(listItem).toList(),
-              )
-          )
-        ],
-      )
+            const SizedBox(width: 12),
+            const Icon(
+              Icons.notifications_none_outlined,
+              color: Colors.black,
+              size: 27,
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("search_page");
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+            ),
+            CircleAvatar(
+              radius: 22,
+              backgroundColor: Colors.grey.withOpacity(0.5),
+              backgroundImage: const AssetImage('assets/images/img.png'),
+            ),
+            const SizedBox(width: 10),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+                child: ListView(
+                  children: videoResult.map<Widget>(listItem).toList(),
+                )
+            )
+          ],
+        )
     );
   }
-
   Widget listItem(YouTubeVideo video) {
     return GestureDetector(
       onTap: () {

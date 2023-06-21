@@ -27,10 +27,8 @@ class _Search_PageState extends State<Search_Page> {
     videoResult = await youtube.nextPage();
     setState(() {});
   }
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadData();
   }
@@ -50,14 +48,14 @@ class _Search_PageState extends State<Search_Page> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               children: [
                 IconButton(
-                onPressed: () {
-      Navigator.of(context).pop();
-      },
-          icon: const Icon(Icons.arrow_back)
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(Icons.arrow_back)
                 ),
                 Expanded(
                     child: TextField(
@@ -77,8 +75,8 @@ class _Search_PageState extends State<Search_Page> {
                         callAPI();
                         setState(() {});
                       },
-                      decoration:  InputDecoration(
-                        hintText:  "Search result"
+                      decoration:  const InputDecoration(
+                          hintText:  "Search result"
                       ),
                     )
                 ),
@@ -89,35 +87,34 @@ class _Search_PageState extends State<Search_Page> {
               ],
             ),
             Expanded(
-                child: (on)
-                    ? ListView.builder(
-                    itemBuilder: (context,i) {
-                      return ListTile(
-                        onTap: () {
-                          on = false;
-                          searchController.text = Global.searchList[i];
-                          callAPI();
-                          setState(() {});
-                        },
-                        leading: const Icon(Icons.history),
-                        title: Text(
-                          Global.searchList[i],
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                        trailing: const Icon(Icons.arrow_upward_outlined),
-                      );
+              child: (on)
+                  ? ListView.builder(
+                itemBuilder: (context,i) {
+                  return ListTile(
+                    onTap: () {
+                      on = false;
+                      searchController.text = Global.searchList[i];
+                      callAPI();
+                      setState(() {});
+                    },
+                    leading: const Icon(Icons.history),
+                    title: Text(
+                      Global.searchList[i],
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    trailing: const Icon(Icons.arrow_upward_outlined),
+                  );
                 },
-                  itemCount: Global.searchList.length,
-                ) : ListView(
-                  children: videoResult.map<Widget>(listItem).toList(),
-                ),
+                itemCount: Global.searchList.length,
+              ) : ListView(
+                children: videoResult.map<Widget>(listItem).toList(),
+              ),
             )
           ],
         ),
       ),
     );
   }
-
   Widget listItem(YouTubeVideo video) {
     return GestureDetector(
       onTap: () {

@@ -10,7 +10,6 @@ class PlayerPage extends StatefulWidget {
   @override
   State<PlayerPage> createState() => _PlayerPageState();
 }
-
 class _PlayerPageState extends State<PlayerPage> {
   late YoutubePlayerController _controller;
   @override
@@ -25,7 +24,6 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     YoutubePlayer(
@@ -36,81 +34,81 @@ class _PlayerPageState extends State<PlayerPage> {
       },
     );
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: YoutubePlayerBuilder(
-        player: YoutubePlayer(
-        controller: _controller,
-      ),
-        builder: (context,player) {
-          return Padding(
+        backgroundColor: Colors.white,
+        body: YoutubePlayerBuilder(
+          player: YoutubePlayer(
+            controller: _controller,
+          ),
+          builder: (context,player) {
+            return Padding(
               padding: EdgeInsets.all(15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                player,
-                const SizedBox(height: 25),
-                Text(
-                  Global.data!.title,
-                  style: const TextStyle(fontSize: 17),
-                ),
-                const SizedBox(height: 10),
-
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      buttons(Icons.thumb_up_outlined, "Like"),
-                      buttons(Icons.thumb_down_alt_outlined, "Dislike"),
-                      buttons(Icons.share_outlined, "Share"),
-                      buttons(Icons.slow_motion_video, "Create"),
-                      buttons(Icons.download_outlined, "Download"),
-                      buttons(Icons.add_box_outlined, "Save"),
-                    ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  player,
+                  const SizedBox(height: 25),
+                  Text(
+                    Global.data!.title,
+                    style: const TextStyle(fontSize: 17),
                   ),
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    Text(
-                     Global.data!.channelTitle,
-                      style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                  const SizedBox(height: 10),
+
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        buttons(Icons.thumb_up_outlined, "Like"),
+                        buttons(Icons.thumb_down_alt_outlined, "Dislike"),
+                        buttons(Icons.share_outlined, "Share"),
+                        buttons(Icons.slow_motion_video, "Create"),
+                        buttons(Icons.download_outlined, "Download"),
+                        buttons(Icons.add_box_outlined, "Save"),
+                      ],
                     ),
-                    Spacer(),
-                    TextButton(
+                  ),
+                  const Divider(),
+                  Row(
+                    children: [
+                      Text(
+                        Global.data!.channelTitle,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const Spacer(),
+                      TextButton(
                         onPressed: () {
                         },
-                      child: const Text(
-                        "Subscribe",
-                        style: TextStyle(color: Colors.red),
+                        child: const Text(
+                          "Subscribe",
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.notifications),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                const SizedBox(height: 10),
-                Text(
-                  "${Global.data!.publishedAt}",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  "${Global.data!.description}",
-                  style: const TextStyle(fontSize: 15, color: Colors.grey),
-                ),
-              ],
-            ),
-          );
-        },
-      )
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.notifications),
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  const SizedBox(height: 10),
+                  Text(
+                    "${Global.data!.publishedAt}",
+                    style: const TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "${Global.data!.description}",
+                    style: const TextStyle(fontSize: 15, color: Colors.grey),
+                  ),
+                ],
+              ),
+            );
+          },
+        )
     );
   }
   buttons(icon, String text) {
